@@ -1,15 +1,25 @@
-# Ignore generated files
+# Build artifacts
 /build/
-/autoarchiveurl/autoarchiveurl.sty
-/autoarchiveurl/*.aux
-/autoarchiveurl/*.log
-/autoarchiveurl/*.toc
-/autoarchiveurl/*.out
-/autoarchiveurl/*.glo
-/autoarchiveurl/*.gls
-/autoarchiveurl/*.idx
-/autoarchiveurl/*.ilg
-/autoarchiveurl/*.ind
-/autoarchiveurl/*.lof
-/autoarchiveurl/*.lot
-/autoarchiveurl/*.pdf
+
+# Generated files in source directory (should not be committed)
+/autoarchiveurl/*.sty
+
+# LaTeX build artifacts
+*.aux
+*.log
+*.toc
+*.out
+*.glo
+*.gls
+*.idx
+*.ilg
+*.ind
+*.lof
+*.lot
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+*.bbl
+*.bcf
+*.blg
+*.run.xml

@@ -20,11 +20,13 @@ jobs:
         uses: teatimeguest/setup-texlive-action@v3
         with:
           packages: >
+            scheme-basic
             latex-bin
             latexmk
             etoolbox
             hyperref
             ltxdoc
+            tools
 
       - name: Build .sty and documentation from .dtx and .ins
         run: |
@@ -32,8 +34,9 @@ jobs:
 
       - name: Build tests
         run: |
+          mkdir -p build/test
           cd test
-          for f in *.tex; do pdflatex -output-directory=../build "$f"; done
+          for f in *.tex; do pdflatex -output-directory=../build/test "$f"; done
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
@@ -44,10 +47,4 @@ jobs:
             build/autoarchiveurl.pdf
             autoarchiveurl/autoarchiveurl.dtx
             autoarchiveurl/autoarchiveurl.ins
-            build/*.log
-            build/*.aux
-            build/*.out
-            build/*.toc
-            build/*.gz
-            build/*.tex
-            build/*.pdf
+            build/test/*.pdf

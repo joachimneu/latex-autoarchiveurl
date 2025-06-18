@@ -1,13 +1,16 @@
 \documentclass{article}
 \usepackage{hyperref}
 \usepackage{autoarchiveurl}
+
 \begin{document}
 
 Test of \texttt{autoarchiveurl} package:
 
+\makeatletter
 \begin{itemize}
   \item Original: \autoarchiveurl@originalurl{https://example.com}
   \item Archive:  \url{https://example.com}
 \end{itemize}
+\makeatother
 
 \end{document}
