@@ -1,0 +1,14 @@
+# Ignore generated files
+/autoarchiveurl/autoarchiveurl.sty
+/autoarchiveurl/*.aux
+/autoarchiveurl/*.log
+/autoarchiveurl/*.toc
+/autoarchiveurl/*.out
+/autoarchiveurl/*.glo
+/autoarchiveurl/*.gls
+/autoarchiveurl/*.idx
+/autoarchiveurl/*.ilg
+/autoarchiveurl/*.ind
+/autoarchiveurl/*.lof
+/autoarchiveurl/*.lot
+/autoarchiveurl/*.pdf

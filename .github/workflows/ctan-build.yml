@@ -1,0 +1,44 @@
+# .github/workflows/ctan-build.yml
+# GitHub Actions workflow to build LaTeX package for CTAN and documentation
+
+name: Build LaTeX Package and Documentation
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up TeX Live
+        uses: teatimeguest/setup-texlive-action@v3
+        with:
+          packages: >
+            latex-bin
+            latexmk
+            etoolbox
+            hyperref
+            ltxdoc
+
+      - name: Build .sty and documentation from .dtx and .ins
+        run: |
+          cd autoarchiveurl
+          latex autoarchiveurl.ins
+          pdflatex autoarchiveurl.dtx
+          pdflatex autoarchiveurl.dtx
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ctan-package
+          path: |
+            autoarchiveurl/autoarchiveurl.sty
+            autoarchiveurl/autoarchiveurl.dtx
+            autoarchiveurl/autoarchiveurl.ins
+            autoarchiveurl/autoarchiveurl.pdf
