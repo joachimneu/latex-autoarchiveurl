@@ -2,17 +2,21 @@
 # Build .sty and documentation from .dtx and .ins
 
 PACKAGE = autoarchiveurl
-PKGDIR = $(PACKAGE)
+SRCDIR = $(PACKAGE)
+BUILDDIR = build
 
-all: $(PKGDIR)/$(PACKAGE).sty $(PKGDIR)/$(PACKAGE).pdf
+all: $(BUILDDIR)/$(PACKAGE).sty $(BUILDDIR)/$(PACKAGE).pdf
 
-$(PKGDIR)/$(PACKAGE).sty: $(PKGDIR)/$(PACKAGE).ins $(PKGDIR)/$(PACKAGE).dtx
-	cd $(PKGDIR) && latex $(PACKAGE).ins
+$(BUILDDIR)/$(PACKAGE).sty: $(SRCDIR)/$(PACKAGE).ins $(SRCDIR)/$(PACKAGE).dtx | $(BUILDDIR)
+	cd $(BUILDDIR) && latex ../$(SRCDIR)/$(PACKAGE).ins
 
-$(PKGDIR)/$(PACKAGE).pdf: $(PKGDIR)/$(PACKAGE).dtx
-	cd $(PKGDIR) && pdflatex $(PACKAGE).dtx && pdflatex $(PACKAGE).dtx
+$(BUILDDIR)/$(PACKAGE).pdf: $(SRCDIR)/$(PACKAGE).dtx | $(BUILDDIR)
+	cd $(BUILDDIR) && pdflatex ../$(SRCDIR)/$(PACKAGE).dtx && pdflatex ../$(SRCDIR)/$(PACKAGE).dtx
+
+$(BUILDDIR):
+	mkdir -p $(BUILDDIR)
 
 clean:
-	rm -f $(PKGDIR)/*.aux $(PKGDIR)/*.log $(PKGDIR)/*.toc $(PKGDIR)/*.out $(PKGDIR)/*.glo $(PKGDIR)/*.gls $(PKGDIR)/*.idx $(PKGDIR)/*.ilg $(PKGDIR)/*.ind $(PKGDIR)/*.lof $(PKGDIR)/*.lot
+	rm -f $(BUILDDIR)/*
 
 .PHONY: all clean

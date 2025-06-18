@@ -50,8 +50,13 @@
 \ProvidesPackage{autoarchiveurl}[2025/06/17 v0.1 Override \url to use archive.org snapshots]
 \RequirePackage{etoolbox}
 \RequirePackage{hyperref}
-\let\originalurl\url
-\renewcommand{\url}[1]{\originalurl{https://web.archive.org/web/*/#1}}
+% Save original \url under a unique name
+\let\autoarchiveurl@originalurl\url
+% Redefine \url to point to archive.org snapshot
+\renewcommand{\url}[1]{\autoarchiveurl@originalurl{https://web.archive.org/web/*/#1}}
 %</package>
+%
+% \section{Access to the original \textbackslash url}
+% The original \verb|\url| command is available as \verb|\autoarchiveurl@originalurl| after loading this package.
 %
 % \Finale

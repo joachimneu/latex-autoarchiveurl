@@ -28,17 +28,26 @@ jobs:
 
       - name: Build .sty and documentation from .dtx and .ins
         run: |
-          cd autoarchiveurl
-          latex autoarchiveurl.ins
-          pdflatex autoarchiveurl.dtx
-          pdflatex autoarchiveurl.dtx
+          make all
+
+      - name: Build tests
+        run: |
+          cd test
+          for f in *.tex; do pdflatex -output-directory=../build "$f"; done
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
           name: ctan-package
           path: |
-            autoarchiveurl/autoarchiveurl.sty
+            build/autoarchiveurl.sty
+            build/autoarchiveurl.pdf
             autoarchiveurl/autoarchiveurl.dtx
             autoarchiveurl/autoarchiveurl.ins
-            autoarchiveurl/autoarchiveurl.pdf
+            build/*.log
+            build/*.aux
+            build/*.out
+            build/*.toc
+            build/*.gz
+            build/*.tex
+            build/*.pdf

@@ -1,4 +1,5 @@
 # Ignore generated files
+/build/
 /autoarchiveurl/autoarchiveurl.sty
 /autoarchiveurl/*.aux
 /autoarchiveurl/*.log
