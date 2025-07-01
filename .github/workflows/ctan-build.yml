@@ -12,21 +12,16 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/devcontainers/base:ubuntu
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up TeX Live
-        uses: teatimeguest/setup-texlive-action@v3
-        with:
-          packages: >
-            scheme-basic
-            latex-bin
-            latexmk
-            etoolbox
-            hyperref
-            ltxdoc
-            tools
+      - name: Set up LaTeX environment
+        run: |
+          apt-get update
+          apt-get install -y texlive-latex-base texlive-latex-recommended texlive-latex-extra latexmk
 
       - name: Build .sty and documentation from .dtx and .ins
         run: |

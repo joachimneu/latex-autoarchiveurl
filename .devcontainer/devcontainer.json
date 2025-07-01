@@ -1,0 +1,22 @@
+{
+  "name": "LaTeX Development",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": "true",
+      "installOhMyZsh": "true",
+      "upgradePackages": "true"
+    },
+    "ghcr.io/devcontainers/features/git:1": {}
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "james-yu.latex-workshop",
+        "yzhang.markdown-all-in-one"
+      ]
+    }
+  },
+  "postCreateCommand": "apt-get update && apt-get install -y texlive-latex-base texlive-latex-recommended texlive-latex-extra latexmk",
+  "remoteUser": "vscode"
+}

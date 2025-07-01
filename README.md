@@ -2,6 +2,10 @@
 
 A LaTeX package that overrides the `\url` command to refer to snapshots on archive.org.
 
+## Development
+
+This project uses consistent container environments between development and CI. When using GitHub Codespaces or a local Dev Container, the LaTeX environment will be automatically set up for you. See [CONTAINER.md](CONTAINER.md) for details.
+
 ## Features
 - Overrides `\url` so that all URLs are automatically rewritten to their [Internet Archive](https://web.archive.org/) snapshot equivalents.
 - The original `\url` command is still available as `\autoarchiveurl@originalurl` after loading this package.
